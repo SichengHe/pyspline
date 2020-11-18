@@ -5,11 +5,7 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      REPO_NAME: pyspline		    
-      DOCKER_WORKING_DIR: /home/mdolabuser/repos/$REPO_NAME
-      DOCKER_MOUNT_DIR: /home/mdolabuser/travis/$REPO_NAME
-      DOCKER_TAG: u18-gcc-ompi-stable
+
     steps:
       # Before install
       - run: docker pull mdolab/public:$DOCKER_TAG
@@ -30,4 +26,9 @@ jobs:
         #DOCKER_TAG: u20-gcc-ompi-stable
       # After Script
       - run: docker rm -f app
-      
+
+      env:
+        REPO_NAME: pyspline
+        DOCKER_WORKING_DIR: /home/mdolabuser/repos/$REPO_NAME
+        DOCKER_MOUNT_DIR: /home/mdolabuser/travis/$REPO_NAME
+        DOCKER_TAG: u18-gcc-ompi-stable
