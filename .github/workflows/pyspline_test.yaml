@@ -9,10 +9,10 @@ jobs:
         REPO_NAME: pyspline
         DOCKER_WORKING_DIR: /home/mdolabuser/repos/pyspline
         DOCKER_MOUNT_DIR: /home/mdolabuser/travis/pyspline
-        DOCKER_TAG: docker://mdolab/public:u18-gcc-ompi-latest
+        DOCKER_TAG: u18-gcc-ompi-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: $DOCKER_TAG
+      - uses: docker://mdolab/public:u18-gcc-ompi-latest
       # Before install
       - run: docker run -t -d 
          --name app 
