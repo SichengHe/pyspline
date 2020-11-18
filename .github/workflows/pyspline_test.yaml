@@ -18,7 +18,7 @@ jobs:
       - run: docker run -t -d --name app --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG /bin/bash
       # Install
       - run: docker exec app /bin/bash -c "rm -rf $DOCKER_WORKING_DIR && ls -a && cp -r $DOCKER_MOUNT_DIR $DOCKER_WORKING_DIR" && ls -a
-      - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && ls -a && cd $DOCKER_WORKING_DIR && ls -a && cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk && make";
+      - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && ls -a && cd $DOCKER_WORKING_DIR && ls travis && ls travis/pyspline && pwd && cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk && make";
       - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && cd $DOCKER_WORKING_DIR && pip install ."
       # Script
       - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && cd $DOCKER_WORKING_DIR && testflo . -v"
