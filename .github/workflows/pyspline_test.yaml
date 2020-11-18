@@ -8,8 +8,8 @@ jobs:
 
     env:
         REPO_NAME: pyspline
-        DOCKER_WORKING_DIR: /home/mdolabuser/repos/$REPO_NAME
-        DOCKER_MOUNT_DIR: /home/mdolabuser/travis/$REPO_NAME
+        DOCKER_WORKING_DIR: /home/mdolabuser/repos/pyspline
+        DOCKER_MOUNT_DIR: /home/mdolabuser/travis/pyspline
         DOCKER_TAG: u18-gcc-ompi-latest
     steps:
 
