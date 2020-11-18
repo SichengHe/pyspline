@@ -20,7 +20,7 @@ jobs:
           --name app 
           --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
           /bin/bash
-      - run: ls -R /.
+      - run: ls -R /home/
       - run: ls -a $DOCKER_MOUNT_DIR
       # Install
       # - run: docker exec app /bin/bash -c "rm -rf $DOCKER_WORKING_DIR && ls -a && cp -r $DOCKER_MOUNT_DIR $DOCKER_WORKING_DIR" && ls -a
