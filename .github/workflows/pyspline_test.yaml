@@ -2,9 +2,6 @@ name: pyspline_test
 
 on: push
 
-runs:
-  using: 'docker'
-
 jobs:
   test:
     runs-on: ubuntu-latest
