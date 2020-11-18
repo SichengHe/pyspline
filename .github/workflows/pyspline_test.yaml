@@ -14,27 +14,16 @@ jobs:
       - uses: actions/checkout@v2
       - uses: docker://mdolab/public:u18-gcc-ompi-stable
       # Before install
-      #- run: docker pull mdolab/public:$DOCKER_TAG
-      - run: pwd && ls -a
-      #- run: docker run -t -d 
-      #    --name app 
-      #    --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
-      #    /bin/bash
-      #- run: ls -R /home/
-      - run: ls -a $DOCKER_MOUNT_DIR
+      - run: docker run -t -d 
+         --name app 
+         --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
+         /bin/bash
       # Install
-      # - run: docker exec app /bin/bash -c "rm -rf $DOCKER_WORKING_DIR && ls -a && cp -r $DOCKER_MOUNT_DIR $DOCKER_WORKING_DIR" && ls -a
+      - run: docker exec app /bin/bash -c "rm -rf $DOCKER_WORKING_DIR && ls -a && cp -r $DOCKER_MOUNT_DIR $DOCKER_WORKING_DIR" && ls -a
       - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && ls -a && ls travis && cd $DOCKER_WORKING_DIR && pwd && cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk && make";
       - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && cd $DOCKER_WORKING_DIR && pip install ."
       # Script
       - run: docker exec app /bin/bash -c ". \$HOME/.bashrc_mdolab && cd $DOCKER_WORKING_DIR && testflo . -v"
-      # env:
-        #DOCKER_TAGc: 7-gcc-ompi-latest
-        #DOCKER_TAG: c7-intel-impi-latest
-        #DOCKER_TAG: u18-gcc-ompi-latest
-        #DOCKER_TAG: u18-gcc-ompi-stable
-        #DOCKER_TAG: u20-gcc-ompi-latest
-        #DOCKER_TAG: u20-gcc-ompi-stable
       # After Script
       - run: docker rm -f app
 
