@@ -5,7 +5,7 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    container: mdolab/public:$DOCKER_TAG
     env:
         REPO_NAME: pyspline
         DOCKER_WORKING_DIR: /home/mdolabuser/repos/pyspline
@@ -14,13 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       # Before install
-      - run: docker pull mdolab/public:$DOCKER_TAG
+      #- run: docker pull mdolab/public:$DOCKER_TAG
       - run: pwd && ls -a
-      - run: docker run -t -d 
-          --name app 
-          --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
-          /bin/bash
-      - run: ls -R /home/
+      #- run: docker run -t -d 
+      #    --name app 
+      #    --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
+      #    /bin/bash
+      #- run: ls -R /home/
       - run: ls -a $DOCKER_MOUNT_DIR
       # Install
       # - run: docker exec app /bin/bash -c "rm -rf $DOCKER_WORKING_DIR && ls -a && cp -r $DOCKER_MOUNT_DIR $DOCKER_WORKING_DIR" && ls -a
