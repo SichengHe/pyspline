@@ -15,6 +15,7 @@ jobs:
 
       # Before install
       - run: docker pull mdolab/public:$DOCKER_TAG
+      - run: pwd
       - run: docker run -t -d 
           --name app 
           --mount "type=bind,src=$(pwd),target=$DOCKER_MOUNT_DIR" mdolab/public:$DOCKER_TAG 
