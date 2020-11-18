@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container: 
-      image: mdolab/public:$DOCKER_TAG
+      image: mdolab/public:pyspline
     env:
         REPO_NAME: pyspline
         DOCKER_WORKING_DIR: /home/mdolabuser/repos/pyspline
