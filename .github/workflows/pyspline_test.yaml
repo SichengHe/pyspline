@@ -4,8 +4,8 @@ on: push
 
 env:
   REPO_NAME: pyspline
-  DOCKER_WORKING_DIR: /home/mdolabuser/repos/$REPO_NAME
-  DOCKER_MOUNT_DIR: /home/mdolabuser/travis/$REPO_NAME
+  DOCKER_WORKING_DIR: /home/mdolabuser/repos/${{env.REPO_NAME}}
+  DOCKER_MOUNT_DIR: /home/mdolabuser/travis/${{env.REPO_NAME}}
   DOCKER_TAG: u18-gcc-ompi-latest
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://mdolab/public:$DOCKER_TAG
+      - uses: docker://mdolab/public:${{env.DOCKER_TAG}}
       # Before install
       - run: docker run -t -d 
          --name app 
