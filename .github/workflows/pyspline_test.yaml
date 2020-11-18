@@ -12,7 +12,7 @@ jobs:
         DOCKER_MOUNT_DIR: /home/mdolabuser/travis/pyspline
         DOCKER_TAG: u18-gcc-ompi-latest
     steps:
-
+      uses: actions/checkout@v2
       # Before install
       - run: docker pull mdolab/public:$DOCKER_TAG
       - run: pwd && ls -a && ls -a ..
