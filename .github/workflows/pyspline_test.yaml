@@ -2,6 +2,9 @@ name: pyspline_test
 
 on: push
 
+env:
+  DOCKER_TAG: 'u18-gcc-ompi-latest'
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,10 +12,9 @@ jobs:
         REPO_NAME: pyspline
         DOCKER_WORKING_DIR: /home/mdolabuser/repos/pyspline
         DOCKER_MOUNT_DIR: /home/mdolabuser/travis/pyspline
-        DOCKER_TAG: u18-gcc-ompi-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: docker://mdolab/public:${DOCKER_TAG}
+      - uses: docker://mdolab/public:${{ DOCKER_TAG }}
       # Before install
       - run: docker run -t -d 
          --name app 
